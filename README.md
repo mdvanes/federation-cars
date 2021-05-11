@@ -39,6 +39,20 @@ Included apps:
 
 Heavily borrows from https://github.com/module-federation/module-federation-examples/blob/master/comprehensive-demo
 
+## Adding Apps with CRA
+
+E.g. fc-list was created this way
+
+The CRA configs will be ejected. Alternatively, you could use e.g. https://www.npmjs.com/package/react-app-rewired
+
+
+- cd packages
+- yarn create react-app fc-list --template typescript
+- in fc-list/package.json 
+  - modify name to @mdworld/fc-list
+  - prefix the start script with BROWSER=none PORT=3002 
+- in /package.json add { "resolutions": { "babel-loader": "8.1.0" }}
+
 # TODO
 
 - CORS?
