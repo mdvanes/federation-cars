@@ -9,7 +9,7 @@ Looks like a simple dashboard to show a list of EV cars and clicking on them wil
 - Web Components (lit/Stencil) as UI library for both Angular and React
 - Docker container with reverse proxy for testing/deploying all apps together
 
-## Developing
+# Developing
 
 ```sh
 nvm use
@@ -17,9 +17,9 @@ yarn install
 yarn start
 ```
 
-Open [http://localhost:3001](http://localhost:3001).
+Open [http://localhost:3011](http://localhost:3011).
 
-## Building
+# Building
 
 ... TODO ...
 
@@ -42,7 +42,7 @@ Heavily borrows from https://github.com/module-federation/module-federation-exam
 # TODO
 
 - CORS?
-- Test CRA
+- Test CRA: Very difficult. Ejecting works, but after that Webpack 5 is needed and a lot of plugings conflict with the ejected webpack.config.
 - Test NGINX reverse proxy
 - Test deploy as a single docker container
 - Test Angular

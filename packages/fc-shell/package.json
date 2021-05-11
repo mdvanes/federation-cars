@@ -19,7 +19,7 @@
     "scripts": {
       "start": "webpack --watch",
       "build": "webpack --mode production",
-      "serve": "serve dist -p 3001",
+      "serve": "serve dist -p 3011",
       "clean": "rm -rf dist"
     },
     "devDependencies": {
