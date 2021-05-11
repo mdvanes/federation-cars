@@ -50,7 +50,8 @@ module.exports = {
       name: "fc-shell",
       filename: "remoteEntry.js",
       remotes: {
-        "fc_list": "fc_list@http://localhost:3012/remoteEntry.js",
+        // TODO also support this port "fc_list": "fc_list@http://localhost:3012/remoteEntry.js",
+        "fc_list": "fc_list@http://localhost:3019/fc_list/remoteEntry.js",
         // app_03: "app_03@http://localhost:3003/remoteEntry.js",
         // app_04: "app_04@http://localhost:3004/remoteEntry.js",
         // app_05: "app_05@http://localhost:3005/remoteEntry.js",
