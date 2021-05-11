@@ -19,6 +19,21 @@ yarn start
 
 Open [http://localhost:3011](http://localhost:3011).
 
+But this requires you to open ports 3011 up to 3014. It might also lead to CORS errors.
+Running `yarn start:dev-nginx` starts an Nginx reverse proxy that redirects subpaths of localhost:3019 to the micro frontend services on different ports.
+Running `yarn start:proxied` will tell webpack to use proxied paths for module federation.
+
+Also advantage of Nginx: SSL not between servers, only between browser and Nginx.
+
+For local development:
+
+```sh
+yarn start:dev-nginx
+yarn start:proxied
+```
+
+Open [http://localhost:3019/fc_shell/](http://localhost:3019/fc_shell/).
+
 # Building
 
 Run with
@@ -29,17 +44,6 @@ yarn serve
 ```
 
 Open [http://localhost:3011](http://localhost:3011).
-
-But this requires you to open ports 3011 up to 3014. It might also lead to CORS errors.
-Also advantage of Nginx: SSL not between servers, only between browser and Nginx.
-
-For local development:
-
-```sh
-yarn start:dev-nginx
-yarn start
-http://localhost:3019/fc_shell/
-```
 
 For production:
 
