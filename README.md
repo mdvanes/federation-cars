@@ -48,9 +48,11 @@ The CRA configs will be ejected. Alternatively, you could use e.g. https://www.n
 
 - cd packages
 - yarn create react-app fc-list --template typescript
+- in fc-list run `yarn eject`
 - in fc-list/package.json 
   - modify name to @mdworld/fc-list
   - prefix the start script with BROWSER=none PORT=3002 
+  - add "webpack": "5.36.2", "webpack-cli": "^4.0.0",
 - in /package.json add { "resolutions": { "babel-loader": "8.1.0" }}
 
 # TODO
