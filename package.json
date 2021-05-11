@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "concurrently \"lerna run --scope @mdworld/* --parallel start\" \"yarn serve\"",
+    "start:proxied": "concurrently \"lerna run --scope @mdworld/* --parallel start -- --env proxied=true\" \"yarn serve\"",
     "build": "lerna run --scope @mdworld/* build",
     "serve": "lerna run --scope @mdworld/* --parallel serve",
     "clean": "lerna run --scope @mdworld/* --parallel clean",

@@ -1,83 +1,88 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack").container
-  .ModuleFederationPlugin;
+const ModuleFederationPlugin =
+  require("webpack").container.ModuleFederationPlugin;
 const deps = require("./package.json").dependencies;
-module.exports = {
-  entry: "./src/index",
-  cache: false,
+module.exports = (env) => {
+  console.log(env);
+  return {
+    entry: "./src/index",
+    cache: false,
 
-  mode: "development",
-  devtool: "source-map",
+    mode: "development",
+    devtool: "source-map",
 
-  optimization: {
-    minimize: false,
-  },
+    optimization: {
+      minimize: false,
+    },
 
-  output: {
-    publicPath: "auto",
-  },
+    output: {
+      publicPath: "auto",
+    },
 
-  resolve: {
-    extensions: [".jsx", ".js", ".json", ".mjs"],
-  },
+    resolve: {
+      extensions: [".jsx", ".js", ".json", ".mjs"],
+    },
 
-  module: {
-    rules: [
-      {
-        test: /\.m?js$/,
-        type: "javascript/auto",
-        resolve: {
-          fullySpecified: false,
+    module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          type: "javascript/auto",
+          resolve: {
+            fullySpecified: false,
+          },
         },
-      },
-      {
-        test: /\.jsx?$/,
-        loader: require.resolve("babel-loader"),
-        exclude: /node_modules/,
-        options: {
-          presets: [require.resolve("@babel/preset-react")],
+        {
+          test: /\.jsx?$/,
+          loader: require.resolve("babel-loader"),
+          exclude: /node_modules/,
+          options: {
+            presets: [require.resolve("@babel/preset-react")],
+          },
         },
-      },
-      {
-        test: /\.md$/,
-        loader: "raw-loader",
-      },
+        {
+          test: /\.md$/,
+          loader: "raw-loader",
+        },
+      ],
+    },
+
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "fc-shell",
+        filename: "remoteEntry.js",
+        remotes: {
+          fc_list:
+            env.proxied && env.proxied === "true"
+              ? "fc_list@http://localhost:3019/fc_list/remoteEntry.js"
+              : "fc_list@http://localhost:3012/remoteEntry.js",
+          // app_03: "app_03@http://localhost:3003/remoteEntry.js",
+          // app_04: "app_04@http://localhost:3004/remoteEntry.js",
+          // app_05: "app_05@http://localhost:3005/remoteEntry.js",
+        },
+        //   exposes: {
+        //     "./SideNav": "./src/SideNav",
+        //     "./Page": "./src/Page",
+        //   },
+        shared: {
+          ...deps,
+          "@material-ui/core": {
+            singleton: true,
+          },
+          "react-router-dom": {
+            singleton: true,
+          },
+          "react-dom": {
+            singleton: true,
+          },
+          react: {
+            singleton: true,
+          },
+        },
+      }),
+      new HtmlWebpackPlugin({
+        template: "./public/index.html",
+      }),
     ],
-  },
-
-  plugins: [
-    new ModuleFederationPlugin({
-      name: "fc-shell",
-      filename: "remoteEntry.js",
-      remotes: {
-        // TODO also support this port "fc_list": "fc_list@http://localhost:3012/remoteEntry.js",
-        "fc_list": "fc_list@http://localhost:3019/fc_list/remoteEntry.js",
-        // app_03: "app_03@http://localhost:3003/remoteEntry.js",
-        // app_04: "app_04@http://localhost:3004/remoteEntry.js",
-        // app_05: "app_05@http://localhost:3005/remoteEntry.js",
-      },
-    //   exposes: {
-    //     "./SideNav": "./src/SideNav",
-    //     "./Page": "./src/Page",
-    //   },
-      shared: {
-        ...deps,
-        "@material-ui/core": {
-          singleton: true,
-        },
-        "react-router-dom": {
-          singleton: true,
-        },
-        "react-dom": {
-          singleton: true,
-        },
-        react: {
-          singleton: true,
-        },
-      },
-    }),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
-  ],
+  };
 };
