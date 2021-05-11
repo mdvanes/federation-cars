@@ -5,8 +5,8 @@ Looks like a simple dashboard to show a list of EV cars and clicking on them wil
 - As long as [Nx](https://nx.dev) does not support Webpack 5, this uses Lerna
 - App "fc-shell": React as the "host" or "app shell"
 - App "fc-list": React app for the list of cars, using [CRA](https://create-react-app.dev/)
-- App "Details": Angular app for the EV details (like on [ev-database](https://ev-database.nl))
-- Web Components (lit/Stencil) as UI library for both Angular and React
+- App "fc-details": Angular app for the EV details (like on [ev-database](https://ev-database.nl))
+- Web Components (lit/Stencil) as UI library for both Angular and React (UI Library, Card)
 - Docker container with reverse proxy for testing/deploying all apps together
 
 # Developing
@@ -20,6 +20,17 @@ yarn start
 Open [http://localhost:3011](http://localhost:3011).
 
 # Building
+
+Run with
+
+```sh
+yarn build
+yarn serve
+```
+
+Open [http://localhost:3011](http://localhost:3011).
+
+But this requires you to open ports 3011 up to 3014. It might also lead to CORS errors.
 
 ... TODO ...
 
