@@ -9,14 +9,22 @@ Looks like a simple dashboard to show a list of EV cars and clicking on them wil
 - Web Components (lit/Stencil) as UI library for both Angular and React
 - Docker container with reverse proxy for testing/deploying all apps together
 
-# Getting Started
+## Developing
 
 ```sh
+nvm use
 yarn install
 yarn start
 ```
 
 Open [http://localhost:3001](http://localhost:3001).
+
+## Building
+
+... TODO ...
+
+
+## Remove this
 
 The demo is annotated so navigate through the demos and apps available.
 
@@ -29,13 +37,15 @@ Included apps:
 - App #5 (LitElement): [http://localhost:3005](http://localhost:3005)
   <img src="https://ssl.google-analytics.com/collect?v=1&t=event&ec=email&ea=open&t=event&tid=UA-120967034-1&z=1589682154&cid=ae045149-9d17-0367-bbb0-11c41d92b411&dt=ModuleFederationExamples&dp=/email/ComprehensiveDemo">
 
-
+Heavily borrows from https://github.com/module-federation/module-federation-examples/blob/master/comprehensive-demo
 
 # TODO
 
+- CORS?
 - Test CRA
 - Test NGINX reverse proxy
 - Test deploy as a single docker container
 - Test Angular
 - Test Lit/Stencil
 - App for chart with monthly cost over time
+- Build script

@@ -43,7 +43,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "fc-list",
+      name: "fc_list",
       filename: "remoteEntry.js",
       // remotes: {
       //   app_01: "app_01@http://localhost:3001/remoteEntry.js",

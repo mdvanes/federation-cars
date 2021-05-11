@@ -1,8 +1,8 @@
-import { CssBaseline, createStyles, makeStyles } from "@material-ui/core";
+import { CssBaseline, createStyles, makeStyles, Typography } from "@material-ui/core";
 import List from "./List";
 
 // import { HashRouter } from "react-router-dom";
-// import React from "react";
+import React from "react";
 // import Routes from "./Routes";
 // import SideNav from "./SideNav";
 
