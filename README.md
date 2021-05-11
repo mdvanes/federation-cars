@@ -31,9 +31,20 @@ yarn serve
 Open [http://localhost:3011](http://localhost:3011).
 
 But this requires you to open ports 3011 up to 3014. It might also lead to CORS errors.
+Also advantage of Nginx: SSL not between servers, only between browser and Nginx.
 
-... TODO ...
+For local development:
 
+```sh
+yarn start:dev-nginx
+yarn start
+http://localhost:3019/fc_shell/
+```
+
+For production:
+
+- TODO fix todo in fc-shell/webpack.config.js
+- TODO make a Dockerfile to deploy all micro frontends in one container with Nginx reverse proxy to emulate "production"
 
 ## Remove this
 
@@ -50,13 +61,16 @@ Included apps:
 
 Heavily borrows from https://github.com/module-federation/module-federation-examples/blob/master/comprehensive-demo
 
+# Notes
+
+- Test CRA: Very difficult. Ejecting works, but after that Webpack 5 is needed and a lot of plugings conflict with the ejected webpack.config.
+
 # TODO
 
+- Typescript
 - CORS?
-- Test CRA: Very difficult. Ejecting works, but after that Webpack 5 is needed and a lot of plugings conflict with the ejected webpack.config.
-- Test NGINX reverse proxy
 - Test deploy as a single docker container
 - Test Angular
 - Test Lit/Stencil
 - App for chart with monthly cost over time
-- Build script
+- Google actions build script
