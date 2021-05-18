@@ -22,14 +22,14 @@ module.exports = (env) => {
     },
 
     resolve: {
-      // extensions: [".jsx", ".js", ".json", ".mjs"],
-      extensions: [".jsx", ".js", ".json", ".mjs", ".ts", ".tsx"],
+      extensions: [".js", ".json", ".ts", ".tsx"],
     },
 
     module: {
       rules: [
+        // TODO this should be needed, but when activated nothing is rendered and no errors are logged
         // {
-        //   test: /bootstrap\.tsx?$/,
+        //   test: /bootstrap\.tsx$/,
         //   loader: "bundle-loader",
         //   options: {
         //     lazy: true,
@@ -43,12 +43,8 @@ module.exports = (env) => {
             presets: ["@babel/preset-react", "@babel/preset-typescript"],
           },
         },
-        // {
-        //   test: /\.md$/,
-        //   loader: "raw-loader",
-        // },
         {
-          test: /\.m?js$/,
+          test: /\.js$/,
           type: "javascript/auto",
           resolve: {
             fullySpecified: false,
@@ -63,6 +59,7 @@ module.exports = (env) => {
         filename: "remoteEntry.js",
         remotes: {
           fc_list:
+            // Note: this can also be done with a webpack.config.dev and webpack.config.prod
             env.proxied && env.proxied === "true"
               ? "fc_list@http://localhost:3019/fc_list/remoteEntry.js"
               : "fc_list@http://localhost:3012/remoteEntry.js",
