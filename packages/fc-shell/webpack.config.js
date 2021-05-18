@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const deps = require("./package.json").dependencies;
+
+// https://github.com/module-federation/module-federation-examples/blob/master/typescript/app1/webpack.config.js
 module.exports = (env) => {
   console.log(env);
   return {
@@ -20,29 +22,37 @@ module.exports = (env) => {
     },
 
     resolve: {
-      extensions: [".jsx", ".js", ".json", ".mjs"],
+      // extensions: [".jsx", ".js", ".json", ".mjs"],
+      extensions: [".jsx", ".js", ".json", ".mjs", ".ts", ".tsx"],
     },
 
     module: {
       rules: [
+        // {
+        //   test: /bootstrap\.tsx?$/,
+        //   loader: "bundle-loader",
+        //   options: {
+        //     lazy: true,
+        //   },
+        // },
+        {
+          test: /\.tsx?$/,
+          loader: "babel-loader",
+          exclude: /node_modules/,
+          options: {
+            presets: ["@babel/preset-react", "@babel/preset-typescript"],
+          },
+        },
+        // {
+        //   test: /\.md$/,
+        //   loader: "raw-loader",
+        // },
         {
           test: /\.m?js$/,
           type: "javascript/auto",
           resolve: {
             fullySpecified: false,
           },
-        },
-        {
-          test: /\.jsx?$/,
-          loader: require.resolve("babel-loader"),
-          exclude: /node_modules/,
-          options: {
-            presets: [require.resolve("@babel/preset-react")],
-          },
-        },
-        {
-          test: /\.md$/,
-          loader: "raw-loader",
         },
       ],
     },
@@ -65,7 +75,8 @@ module.exports = (env) => {
         //     "./Page": "./src/Page",
         //   },
         shared: {
-          ...deps,
+          // TODO deps from package.json?
+          // ...deps,
           "@material-ui/core": {
             singleton: true,
           },
